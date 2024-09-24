@@ -25,7 +25,8 @@ Use some sort of looping. Do Not use String.prototype.replace
 
 const urlEncode = function (text) {
   let newW = " "
-  text = text.split(" ")
+  
+  text = text.trim().split(" ")
   text.forEach((element, index) => {
     if(element !== "" && index < (text.length)-1){
       newW+=element
