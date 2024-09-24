@@ -10,27 +10,26 @@ that array.
 */
 
 const sumLargestNumbers = function (data) {
-  let num1 = 0
-  let num2 = 0
-  let num3 = 0
-  if(data.length == 2){
-    data.forEach(element => {
-      num1 += element
-    });
-    return num1
-  }
-  else{
-    data.forEach(element => {
-      num1 = 1
-      if(num1 < element){
-        num2 = element
-        console.log(num2)
-      }
-      else{
-        num1 = element
-      }
-    });
-  }
+  let largest = 0
+  let subLargest = 0
+  data.forEach(element => {
+    let temp = 0;
+    if(element > largest) {
+      temp = largest
+      largest = element
+      
+    } 
+    if(temp>subLargest){
+      subLargest = temp
+    }
+
+    // if element > num1 
+    // num1 = element else
+    // if element > num2 
+    // num2 = el 
+
+  });
+  return largest + subLargest
 };
 
 console.log(sumLargestNumbers([1, 10])); // 11
