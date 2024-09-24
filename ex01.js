@@ -22,12 +22,6 @@ const sumLargestNumbers = function (data) {
     if(temp>subLargest){
       subLargest = temp
     }
-
-    // if element > num1 
-    // num1 = element else
-    // if element > num2 
-    // num2 = el 
-
   });
   return largest + subLargest
 };
