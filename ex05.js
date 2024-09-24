@@ -27,11 +27,10 @@ const urlEncode = function (text) {
   let newW = " "
   text = text.split(" ")
   text.forEach((element, index) => {
-    if(element != "" && index < (text.length)-2){
-      newW += element
-      newW += "%20"
-    }
-    else{
+    if(element !== "" && index < (text.length)-1){
+      newW+=element
+      newW+="%20"
+    }else{
       newW += element
     }
   });
