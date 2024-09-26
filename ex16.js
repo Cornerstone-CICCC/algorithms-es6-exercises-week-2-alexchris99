@@ -18,7 +18,7 @@ For more information on casing styles, read Wikipedia's Special Case Styles for 
 */
 
 const makeCaze = function (input, caze) {
-  let solution = " "
+  let solution = ""
   input = input.split(" ")
   switch(caze){
     case "camel":
