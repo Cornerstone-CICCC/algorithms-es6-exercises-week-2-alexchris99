@@ -29,17 +29,32 @@ const squareCode = function (message) {
   message = message.split(" ")
   message = message.join("")
   let numberPerLine = 0
-  let row = ""
+  let textRow = ""
+  let new_string = ""
   numberPerLine = Math.ceil(Math.sqrt(message.length))
+  
 
-  for(let i = 0; i < message.length; i++){
-    if((i + 1) % numberPerLine == 0){
-      row += message[i] + "\n"
-    }else{
-      row += message[i]
+  column = numberPerLine
+  leterIndex = 0
+
+  for(let i = 0; i < numberPerLine; i++){
+    
+    if( leterIndex >= message.length){
+      leterIndex = numberPerLine - column
     }
+
+    textRow = " "
+
+    while(leterIndex < message.length){
+      textRow += message[leterIndex]
+      leterIndex +=numberPerLine
+    }
+
+    new_string += textRow + " "
+    column--
   }
-  console.log(row)
+  
+  return new_string
 };
 
 console.log(squareCode("chill out")); // clu hlt io
