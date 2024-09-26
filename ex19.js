@@ -65,28 +65,31 @@ const queenThreat = function(chest){
       return true
     }
   }
+  // whiteQueen = [0, 0];
   // diagonal evaluation
-  if(whiteQueen[0] == 7){
+  if((whiteQueen[0] == 7 && whiteQueen[1] == 0)){
     return false
-  }else{
-    for(let i = whiteQueen[1]; i < chest[0].length; i++){
-      if(chest[whiteQueen[0]+1][i] == 1){
-        return true
-      }
+  }
+
+  if((whiteQueen[0] == 0 && whiteQueen[1] == 7)){
+    return false
+  }
+
+  let line = 0
+  line = whiteQueen[1] 
+  for(let i = whiteQueen[1]; i < 8; i++){
+    if(chest[line][i] == 1){
+      return true
+    }
+    line ++
+  }
+  
+  line = whiteQueen[1]
+  for(let i = whiteQueen[1]; i < 8; i--){
+    if(chest[whiteQueen[0]-1][i] == 1){
+      return true
     }
   }
-
-  if(whiteQueen[0] == 0){
-    return false
-  }else{
-    for(let i = whiteQueen[1]; i < chest[0].length; i--){
-      if(chest[whiteQueen[0]-1][i] == 1){
-        return true
-      }
-  }
-  }
-
-
 }
 
 //generateBoard([0,5],[5,0])
@@ -113,7 +116,7 @@ console.log(queenThreat(generatedBoard));
 
 //Input
 whiteQueen = [0, 0];
-blackQueen = [5, 7];
+blackQueen = [7, 7];
 generatedBoard = generateBoard(whiteQueen, blackQueen);
 console.table(generatedBoard);
 console.log(queenThreat(generatedBoard));
