@@ -69,13 +69,8 @@ const queenThreat = function(chest){
   // diagonal evaluation
   if((whiteQueen[0] == 7 && whiteQueen[1] == 0)){
     return false
-  }
-
-  if((whiteQueen[0] == 0 && whiteQueen[1] == 7)){
-    return false
-  }
-
-  let line = 0
+  }else{
+    let line = 0
   line = whiteQueen[1] 
   for(let i = whiteQueen[1]; i < 8; i++){
     if(chest[line][i] == 1){
@@ -83,13 +78,21 @@ const queenThreat = function(chest){
     }
     line ++
   }
-  
-  line = whiteQueen[1]
+  }
+
+  if((whiteQueen[0] == 0 && whiteQueen[1] == 7)){
+    return false
+  }else{
+    line = whiteQueen[1]
   for(let i = whiteQueen[1]; i < 8; i--){
     if(chest[whiteQueen[0]-1][i] == 1){
       return true
     }
   }
+  }
+
+  
+  
 }
 
 //generateBoard([0,5],[5,0])
