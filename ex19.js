@@ -45,53 +45,68 @@ const generateBoard = function(whiteQueen, blackQueen){
 }
 
 const queenThreat = function(chest){
-  let whiteQueen = [0, 5];
+  let whiteQueen = [];
+  for(let i = 0; i < chest.length; i++){
+    for(let j = 0; j < chest[i].length; j++){
+      if(chest[i][j] == 1){
+        whiteQueen.push([i,j])
+        break
+      }
+    }
+  }
 
   // line evaluation
-  for(let i = whiteQueen[0]; i < chest[0].length; i++){
-    if(chest[i][whiteQueen[1]] == 1){
+  for(let i = whiteQueen[0][0]+1; i < chest[0].length; i++){
+    if(chest[i][whiteQueen[0][1]] == 1){
       return true
     }
   }
-  // row evaluation to the left
-  for(let i = whiteQueen[1]; i < 0; i--){
-    if(chest[whiteQueen[0]][i] == 1){
+
+  //row evaluation to the left
+  for(let i = whiteQueen[0][1]+1; i < 0; i--){
+    if(chest[whiteQueen[0][0]][i] == 1){
       return true
     }
   }
   // row evaluation to the rigth
-  for(let i = whiteQueen[1]; i < chest[0].length; i++){
-    if(chest[whiteQueen[0]][i] == 1){
+  for(let i = whiteQueen[0][1]+1; i < chest[0].length; i++){
+    if(chest[whiteQueen[0][0]][i] == 1){
       return true
     }
   }
-  // whiteQueen = [0, 0];
-  // diagonal evaluation
-  if((whiteQueen[0] == 7 && whiteQueen[1] == 0)){
+
+  //diagonal evaluation
+  if((whiteQueen[0][0] == 7 && whiteQueen[0][1] == 0)){
     return false
-  }else{
-    let line = 0
-  line = whiteQueen[1] 
-  for(let i = whiteQueen[1]; i < 8; i++){
+  }
+
+  let line = 0
+  line = whiteQueen[0][0] 
+  chest[whiteQueen[0][0]][whiteQueen[0][1]] = 2
+  num = 7 - (whiteQueen[0][1])
+
+  for(let i = whiteQueen[0][1]; i <= num; i++){
     if(chest[line][i] == 1){
       return true
     }
     line ++
   }
-  }
-
-  if((whiteQueen[0] == 0 && whiteQueen[1] == 7)){
-    return false
-  }else{
-    line = whiteQueen[1]
-  for(let i = whiteQueen[1]; i < 8; i--){
-    if(chest[whiteQueen[0]-1][i] == 1){
-      return true
-    }
-  }
-  }
-
   
+
+  if(((whiteQueen[0][0] == 0 && whiteQueen[0][1] == 0))){
+    return false
+  }
+    
+  num = whiteQueen[0][0]
+  for(let i = whiteQueen[0][1]; i >= num ; i--){
+    if(chest[line][i] == 1){
+        return true
+      }
+      line ++
+    }
+  
+
+  return false
   
 }
 
@@ -99,8 +114,8 @@ const queenThreat = function(chest){
 
 
 
-let whiteQueen = [0, 5];
-let blackQueen = [5, 0];
+let whiteQueen = [0, 7];
+let blackQueen = [7, 0];
 let generatedBoard = generateBoard(whiteQueen, blackQueen);
 console.table(generatedBoard);
 console.log(queenThreat(generatedBoard));
@@ -118,8 +133,8 @@ console.log(queenThreat(generatedBoard));
 // true
 
 //Input
-whiteQueen = [0, 0];
-blackQueen = [7, 7];
+whiteQueen = [0, 4];
+blackQueen = [1, 7];
 generatedBoard = generateBoard(whiteQueen, blackQueen);
 console.table(generatedBoard);
 console.log(queenThreat(generatedBoard));
